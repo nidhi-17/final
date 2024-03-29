@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+    <title>Admin</title>
+    <style>
+        body {
+            background-color: black;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .memdetails {
+            margin-top: 6%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #29943d;
+        }
+
+        tbody {
+            color: #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="">Fitness <span>Centre Logo</span></a>
+            </div>
+
+            <button class="neon-button" type="button"
+                onclick="window.location.href='{{ url_for( 'logout' ) }}';">Logout</button>
+        </div>
+        </div>
+    </header>
+
+    <div class="memdetails">
+        {% block body %}
+        <h2 style="color: white; text-align: center;">Member Details</h2>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Number</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in userdata %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{user["Name"]}}</td>
+                    <td>{{user["Email"]}}</td>
+                    <td>{{user["Number"]}}</td>
+                    <td>{{user["Age"]}}</td>
+                    <td>{{user["Gender"]}}</td>
+                    <td>{{user["Address"]}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+        {% endblock %}
+    </div>
+</body>
+
+</html>
